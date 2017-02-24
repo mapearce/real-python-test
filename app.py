@@ -6,13 +6,16 @@ from flask import Flask
 # create the application object
 app = Flask(__name__)
 
+#add in debugging
+app.config["DEBUG"] = True
+
 # use decorators to link the function to a url
 @app.route("/")
 @app.route("/hello")
 
 # define the view using a function, which returns a string
 def hello_world():
-	return "Hello, World!"
+	return "Hello, ITS MEEEEEEEEEE!"
 
 #dynamic route
 @app.route("/test/<search_query>")
@@ -34,6 +37,13 @@ def float_type(value):
 def path_type(value):
 	print value
 	return "THEES EES CORRRRRECT"
+
+@app.route("/name/<name>")
+def index(name):
+	if name.lower() == "michael":
+		return "Hello, {}".format(name), 200
+	else:
+		return "No thank you!", 404
 
 # start the development server using the run() method
 if __name__ == "__main__":
